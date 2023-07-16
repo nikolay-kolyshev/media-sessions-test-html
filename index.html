@@ -142,7 +142,7 @@
 
       /* Seek Backward & Seek Forward */
 
-      let defaultSkipTime = 10; /* Time to skip in seconds by default */
+      /*let defaultSkipTime = 10; /!* Time to skip in seconds by default *!/
 
       navigator.mediaSession.setActionHandler('seekbackward', function(event) {
         log('> User clicked "Seek Backward" icon.');
@@ -156,7 +156,7 @@
         const skipTime = event.seekOffset || defaultSkipTime;
         audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration);
         updatePositionState();
-      });
+      });*/
 
       /* Play & Pause */
 
