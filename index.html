@@ -53,20 +53,20 @@
         <pre id="log"></pre>
     </div>
 
-<!--    <script>-->
-<!--      if (!('mediaSession' in navigator)) {-->
-<!--        ChromeSamples.setStatus('The Media Session API is not yet available. Try Chrome for Android.');-->
-<!--      }-->
-
-<!--      // This prevents unnecessary errors when Media Session API is not available.-->
-<!--      navigator.mediaSession = navigator.mediaSession || {};-->
-<!--      navigator.mediaSession.setActionHandler = navigator.mediaSession.setActionHandler || function() {};-->
-<!--      window.MediaMetadata = window.MediaMetadata || function() {};-->
-
-<!--      log = ChromeSamples.log;-->
-<!--    </script>-->
-
     <script>
+      if (!('mediaSession' in navigator)) {
+        ChromeSamples.setStatus('The Media Session API is not yet available. Try Chrome for Android.');
+      }
+
+      // This prevents unnecessary errors when Media Session API is not available.
+      navigator.mediaSession = navigator.mediaSession || {};
+      navigator.mediaSession.setActionHandler = navigator.mediaSession.setActionHandler || function() {};
+      window.MediaMetadata = window.MediaMetadata || function() {};
+
+      log = ChromeSamples.log;
+    </script>
+
+    <!--<script>
       let audio = document.createElement('audio');
 
       let playlist = getAwesomePlaylist();
@@ -276,7 +276,7 @@
           ]
         }];
       }
-    </script>
+    </script>-->
 
     <script>
       document.querySelector('#playButton').addEventListener('click', onPlayButtonClick);
