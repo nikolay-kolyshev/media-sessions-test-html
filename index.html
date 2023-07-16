@@ -207,6 +207,16 @@
         log('Warning! The "seekto" media session action is not supported.');
       }*/
 
+      /// DISABLED all time actions
+
+      try {
+        navigator.mediaSession.setActionHandler('seekto', null);
+        navigator.mediaSession.setActionHandler('seekbackward', null);
+        navigator.mediaSession.setActionHandler('seekforward', null);
+      } catch(error) {
+        log('Warning! Media session action is not supported.');
+      }
+
       /* Utils */
 
       function getAwesomePlaylist() {
