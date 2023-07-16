@@ -66,7 +66,7 @@
       log = ChromeSamples.log;
     </script>
 
-    <!--<script>
+    <script>
       let audio = document.createElement('audio');
 
       let playlist = getAwesomePlaylist();
@@ -104,7 +104,7 @@
         });
 
         // Media is loaded, set the duration.
-        updatePositionState();
+        //updatePositionState();
       }
 
       /* Position state (supported since Chrome 81) */
@@ -134,11 +134,11 @@
         playAudio();
       });
 
-      audio.addEventListener('ended', function() {
+      /*audio.addEventListener('ended', function() {
         // Play automatically the next track when audio ends.
         index = (index - 1 + playlist.length) % playlist.length;
         playAudio();
-      });
+      });*/
 
       /* Seek Backward & Seek Forward */
 
@@ -209,13 +209,13 @@
 
       /// DISABLED all time actions
 
-      try {
+      /*try {
         navigator.mediaSession.setActionHandler('seekto', null);
         navigator.mediaSession.setActionHandler('seekbackward', null);
         navigator.mediaSession.setActionHandler('seekforward', null);
       } catch(error) {
         log('Warning! Media session action is not supported.');
-      }
+      }*/
 
       /* Utils */
 
@@ -276,7 +276,7 @@
           ]
         }];
       }
-    </script>-->
+    </script>
 
     <script>
       document.querySelector('#playButton').addEventListener('click', onPlayButtonClick);
