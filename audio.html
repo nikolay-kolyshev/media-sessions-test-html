@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Background</h3>
+    <p>The <a href="https://developers.google.com/web/updates/2017/02/media-session">Media Session API</a>
+        lets you customize media notifications by providing metadata information for
+        the media your web app is playing. It also allows you to handle media related
+        events such as seeking or track changing which may come from notifications or
+        media keys.</p>
+
+    <p>Credits: Media files are the works of <a href="http://www.wavemage.com/category/music/">Jan Morgenstern</a> and
+        licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">CC BY-NC-ND 3.0</a>.</p>
+
+    <button id="playButton">▶ PLAY</button>
+    <button id="pauseButton">PAUSE</button>
+
+    <script>
+      var ChromeSamples = {
+        log: function() {
+          var line = Array.prototype.slice.call(arguments).map(function(argument) {
+            return typeof argument === 'string' ? argument : JSON.stringify(argument);
+          }).join(' ');
+
+          document.querySelector('#log').textContent += line + '\n';
+        },
+
+        clearLog: function() {
+          document.querySelector('#log').textContent = '';
+        },
+
+        setStatus: function(status) {
+          document.querySelector('#status').textContent = status;
+        },
+
+        setContent: function(newContent) {
+          var content = document.querySelector('#content');
+          while(content.hasChildNodes()) {
+            content.removeChild(content.lastChild);
+          }
+          content.appendChild(newContent);
+        }
+      };
+    </script>
+
+    <h3>Live Output</h3>
+    <div id="output" class="output">
+        <div id="status"></div>
+        <pre id="log"></pre>
+    </div>
+
+    <script>
+      if (!('mediaSession' in navigator)) {
+        ChromeSamples.setStatus('The Media Session API is not yet available. Try Chrome for Android.');
+      }
+
+      // This prevents unnecessary errors when Media Session API is not available.
+      navigator.mediaSession = navigator.mediaSession || {};
+      navigator.mediaSession.setActionHandler = navigator.mediaSession.setActionHandler || function() {};
+      window.MediaMetadata = window.MediaMetadata || function() {};
+
+      log = ChromeSamples.log;
+    </script>
+
+    <script src="audio.js"></script>
+
+    <script>
+      document.querySelector('#playButton').addEventListener('click', onPlayButtonClick);
+      document.querySelector('#pauseButton').addEventListener('click', onPauseButtonClick);
+    </script>
+</body>
+</html>
