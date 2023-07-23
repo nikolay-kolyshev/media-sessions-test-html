@@ -62,9 +62,9 @@
       }
 
       // This prevents unnecessary errors when Media Session API is not available.
-      navigator.mediaSession = navigator.mediaSession || {};
+      /*navigator.mediaSession = navigator.mediaSession || {};
       navigator.mediaSession.setActionHandler = navigator.mediaSession.setActionHandler || function() {};
-      window.MediaMetadata = window.MediaMetadata || function() {};
+      window.MediaMetadata = window.MediaMetadata || function() {};*/
 
       log = ChromeSamples.log;
     </script>
@@ -107,12 +107,12 @@
         });
 
         // Media is loaded, set the duration.
-        //updatePositionState();
+        updatePositionState();
       }
 
       /* Position state (supported since Chrome 81) */
 
-      /*function updatePositionState() {
+      function updatePositionState() {
         if ('setPositionState' in navigator.mediaSession) {
           log('Updating position state...');
           navigator.mediaSession.setPositionState({
@@ -121,7 +121,7 @@
             position: audio.currentTime
           });
         }
-      }*/
+      }
 
       /* Previous Track & Next Track */
 
@@ -149,14 +149,14 @@
         log('> User clicked "Seek Backward" icon.');
         const skipTime = event.seekOffset || defaultSkipTime;
         audio.currentTime = Math.max(audio.currentTime - skipTime, 0);
-        //updatePositionState();
+        updatePositionState();
       });
 
       navigator.mediaSession.setActionHandler('seekforward', function(event) {
         log('> User clicked "Seek Forward" icon.');
         const skipTime = event.seekOffset || defaultSkipTime;
         audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration);
-        //updatePositionState();
+        updatePositionState();
       })
 
 
@@ -203,7 +203,7 @@
             return;
           }
           audio.currentTime = event.seekTime;
-          //updatePositionState();
+          updatePositionState();
         });
       } catch(error) {
         log('Warning! The "seekto" media session action is not supported.');
